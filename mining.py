@@ -38,7 +38,7 @@ class Mission:
         
         return (False, None, None)
 
-acc = [pickle.loads(open('account1.ses', 'wb').read()), pickle.loads(open('account2.ses', 'wb').read())]
+acc = [pickle.loads(open('account1.ses', 'rb').read()), pickle.loads(open('account2.ses', 'rb').read())]
 for i in acc:
     for x in range(23):
         status, rewards, balance = Mission(session=i).tasks(idtype=str(x))
