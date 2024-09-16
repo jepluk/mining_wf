@@ -1,8 +1,8 @@
-name: Run Python Script Every 20 Minutes
+name: Run 
 
 on:
   schedule:
-    - cron: "*/20 * * * *"  # Setiap 20 menit
+    - cron: "*/5 * * * *"  # Setiap 20 menit
 
 jobs:
   run-script:
