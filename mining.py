@@ -12,10 +12,12 @@ class Mission:
         self.base = 'https://kingdomlikes.com/'
 
     def tasks(self, idtype: int) -> tuple:
-        source = self.session.get(self.base +'/free_points/facebook-likes').text
-        params = {'idtype': idtype, 'order': str(random.randrange(1, 9)),'token': re.search(r'name="_token" value="(.*?)"', source).group(1),'session': re.search(r'"(.*?=)";', source).group(1),'addon': 'false'}
-        try: send = self.session.get(self.base +'free_points/page3', params=params).json()
-        except r.exceptions.JSONDecodeError: send = []
+        try:
+            source = self.session.get(self.base +'/free_points/facebook-likes').text
+            params = {'idtype': idtype, 'order': str(random.randrange(1, 9)),'token': re.search(r'name="_token" value="(.*?)"', source).group(1),'session': re.search(r'"(.*?=)";', source).group(1),'addon': 'false'}
+            send = self.session.get(self.base +'free_points/page3', params=params).json()
+        except: 
+            send = []
         
         if len(send) != 0: 
             return self.work(send[0], params['token'], params['session'])
